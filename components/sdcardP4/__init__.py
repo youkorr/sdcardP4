@@ -21,3 +21,4 @@ async def to_code(config):
     
     cs_pin = await cg.gpio_pin_expression(config[CONF_CS_PIN])
     cg.add(var.set_cs_pin(cs_pin))
+
