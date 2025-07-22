@@ -7,7 +7,11 @@
 namespace esphome {
 namespace sdcardP4 {
 
-class SdcardP4Component : public Component, public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW, spi::CLOCK_PHASE_LEADING, spi::DATA_RATE_1MHZ> {
+class SdcardP4Component : public Component, 
+    public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, 
+                         spi::CLOCK_POLARITY_LOW, 
+                         spi::CLOCK_PHASE_LEADING, 
+                         spi::DATA_RATE_1MHZ> {
  public:
   void setup() override;
   void loop() override;
@@ -16,7 +20,7 @@ class SdcardP4Component : public Component, public spi::SPIDevice<spi::BIT_ORDER
 
   void set_cs_pin(GPIOPin *cs_pin) { this->cs_pin_ = cs_pin; }
 
-  // Méthodes pour lire la carte SD
+  // Tes méthodes existantes...
   bool initialize_card();
   bool read_sector(uint32_t sector, uint8_t *buffer);
   bool write_sector(uint32_t sector, const uint8_t *buffer);
@@ -28,7 +32,6 @@ class SdcardP4Component : public Component, public spi::SPIDevice<spi::BIT_ORDER
   bool card_initialized_{false};
   uint32_t card_size_{0};
 
-  // Commandes SD
   uint8_t send_command(uint8_t cmd, uint32_t arg);
   void select_card();
   void deselect_card();
@@ -38,3 +41,4 @@ class SdcardP4Component : public Component, public spi::SPIDevice<spi::BIT_ORDER
 
 }  // namespace sdcardP4
 }  // namespace esphome
+
